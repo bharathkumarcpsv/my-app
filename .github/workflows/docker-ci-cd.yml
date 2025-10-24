@@ -36,6 +36,6 @@ jobs:
             echo "Using user: $USER"
             echo "Key starts with: ${KEY:0:10}..."  # only first 10 chars
             docker pull ghcr.io/${{ github.repository_owner }}/my-app-name:latest
-            docker stop hello-node || true
-            docker rm hello-node || true
-            docker run -d --name hello-node -p 3000:3000 ghcr.io/${{ github.repository_owner }}/my-app-name:latest
+            sudo docker stop hello-node || true
+            sudo docker rm hello-node || true
+            sudo docker run -d --name hello-node -p 3000:3000 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/my-app-name:latest
